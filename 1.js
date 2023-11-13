@@ -9,21 +9,30 @@ function task1() {
    *  timeout - час в мілісекундах, який витрачається на отримання даних,за замовчуванням 2000мс.
    */
   function getData(data, timeout = 2000) {
-    console.log(`Завантаження файлу ${data}...`);
-            setTimeout(() => timeout(null, `Вміст файлу ${data}`), 2000);
-    if(data.length !== 0) {
-      return Promise.resolve(data)
-    } else {
-      Promise.reject(new Error("Об'єкт пустий"));
-    }
+    const promis1 = new Promise((resolve, reject) => {
+      console.log(`Завантаження файлу ${data}...`);
+      setTimeout(() => resolve(`Вміст файлу ${data}`), timeout);
+      reject ("Об'єкт пустий");
+    });
+    const result = getData(data);
     // Функція повертає новий проміс
     // За допомогою setTimeout ми симулюємо затримку timeout, яка виникає при роботі з асинхронними джерелами даних
     // Якщо об'єкт не пустий, ми викликаємо resolve з data
     // Якщо об'єкт пустий, ми викликаємо reject з новим об'єктом Error("Об'єкт пустий")
   }
-
+  
   // Ми викликаємо getData з об'єктом { name: "John", age: 30, city: "New York" } і часом очікування 2000
- console.log(getData(`{ name: "John", age: 30, city: "New York" }`), timeout = 2000);
+  console.log(getData(`{ name: "John", age: 30, city: "New York" }`), 2000);
+  
+  result.then(
+    (data) => {
+      console.log(data)
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+  console.log("Завдання 1 завершено");
   // Ми обробляємо дані, повернуті промісом
   // У разі успіху виводимо в консоль дані
   // У разі помилки виводимо повідомлення помилки
