@@ -8,7 +8,7 @@ function task2() {
   });
     let promise2 = new Promise((resolve) => {
       setTimeout(() =>  5000);
-    resolve(promise1, console.log("Проміс 2 виконано"));
+    resolve(promise2, console.log("Проміс 2 виконано"));
     });
     Promise.race([promise1, promise2]).then((value) => {
         console.log(value);
