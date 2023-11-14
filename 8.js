@@ -3,7 +3,7 @@ console.log("Завдання: 8 ==============================");
 function task8() {
   function fetchFakeData() {
     const fakeData = { name: "John",age: 30 };
-    Promise.resolve(fakeData);
+    return Promise.resolve(fakeData);
   }
   fetchFakeData()
   .then((value) => {
